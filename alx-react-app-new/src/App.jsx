@@ -7,6 +7,8 @@ import Header from './components/Header.jsx'
 import MainContent from './components/MainContent.jsx' 
 import UserProfile from './components/UserProfile'
 import Footer from './components/Footer.jsx'
+import Counter from './components/Counter';
+
 
   
 function App() {
@@ -40,11 +42,16 @@ function App() {
         <Header />
         <MainContent />
       </div>
-
+      
       <div>
       <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <UserProfile name="John" age="30" bio="Enjoys coding and teaching" />
       <UserProfile name="Mary" age="22" bio="Passionate about art and design" />
+      </div>
+
+      <div>
+        <h2>React Counter App</h2>
+        <Counter />
       </div>
       <div>
         <Footer />
