@@ -10,6 +10,12 @@ const EditRecipeForm = ({ recipe }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateRecipe(recipe.id, { title, description });
+
+    const handleSubmit = (event) => {
+  event.preventDefault(); 
+  updateRecipe(recipe.id, { title, description });
+};
+
   };
 
   return (
