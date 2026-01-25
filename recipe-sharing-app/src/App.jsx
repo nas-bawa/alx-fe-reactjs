@@ -2,9 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import SearchBar from './components/SearchBar'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AddRecipeForm from './components/AddRecipeForm'
 import RecipeList from './components/RecipeList'
-import SearchBar from './components/SearchBar'
+import RecipeDetails from './components/RecipeDetails'
+
 /*function App() {
   const [count, setCount] = useState(0) 
 
@@ -33,17 +36,27 @@ import SearchBar from './components/SearchBar'
     </> */
     // src/App.jsx
 
-
-
 function App() {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Recipe Sharing App</h1>
-      <AddRecipeForm />
-      <SearchBar />
-      <RecipeList />
-    </div>
+    <BrowserRouter>
+      <div style={{ padding: '20px' }}>
+        <h1>Recipe Sharing App</h1>
+        <AddRecipeForm />
+        <Routes>
+          <Route path="/" element={<RecipeList />} />
+          <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
+// Wrapper to extract recipeId from URL
+import { useParams } from 'react-router-dom';
+const RecipeDetailsWrapper = () => {
+  const { id } = useParams();
+  return <RecipeDetails recipeId={id} />;
+};
+
 export default App;
+
