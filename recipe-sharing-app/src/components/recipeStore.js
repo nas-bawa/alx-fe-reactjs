@@ -1,13 +1,18 @@
-// src/recipeStore.js
 import { create } from 'zustand';
 
 export const useRecipeStore = create((set) => ({
   recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
 
-  // Add a new recipe
-  addRecipe: (newRecipe) =>
-    set((state) => ({ recipes: [...state.recipes, newRecipe] })),
+  // Action: update search term
+  setSearchTerm: (term) => set({ searchTerm: term }),
 
-  // Initialize or reset recipes
-  setRecipes: (recipes) => set({ recipes }),
+  // Action: filter recipes based on search term
+  filterRecipes: () =>
+    set((state) => ({
+      filteredRecipes: state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      ),
+    })),
 }));
