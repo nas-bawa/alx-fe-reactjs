@@ -12,7 +12,9 @@ const RecipeDetails = ({ recipeId }) => {
 
   return (
     <div>
-      <h1>{recipe.title}</h1>
+        <Link to={`/recipe/${recipe.id}`}>
+            <h3>{recipe.title}</h3>
+        </Link>
       <p>{recipe.description}</p>
       <EditRecipeForm recipe={recipe} />
       <DeleteRecipeButton recipeId={recipe.id} />
