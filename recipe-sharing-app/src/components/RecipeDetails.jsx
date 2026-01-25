@@ -1,7 +1,4 @@
-// src/components/RecipeDetails.jsx
-import { useRecipeStore } from '../recipeStore';
-import EditRecipeForm from './EditRecipeForm';
-import DeleteRecipeButton from './DeleteRecipeButton';
+import FavoriteButton from './FavoriteButton';
 
 const RecipeDetails = ({ recipeId }) => {
   const recipe = useRecipeStore((state) =>
@@ -12,14 +9,9 @@ const RecipeDetails = ({ recipeId }) => {
 
   return (
     <div>
-        <Link to={`/recipe/${recipe.id}`}>
-            <h3>{recipe.title}</h3>
-        </Link>
+      <h1>{recipe.title}</h1>
       <p>{recipe.description}</p>
-      <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton recipeId={recipe.id} />
+      <FavoriteButton recipeId={recipe.id} />
     </div>
   );
 };
-
-export default RecipeDetails;
