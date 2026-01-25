@@ -1,4 +1,4 @@
-import { useRecipeStore } from '../recipeStore';
+import { useRecipeStore } from '../recipeStore'
 
 const SearchBar = () => {
   const setSearchTerm = useRecipeStore((state) => state.setSearchTerm);
@@ -6,7 +6,7 @@ const SearchBar = () => {
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
-    filterRecipes(); // trigger filtering whenever input changes
+    filterRecipes(); // trigger filtering
   };
 
   return (

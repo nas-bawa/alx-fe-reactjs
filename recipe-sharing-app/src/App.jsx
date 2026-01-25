@@ -2,12 +2,11 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import SearchBar from './components/SearchBar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AddRecipeForm from './components/AddRecipeForm'
 import RecipeList from './components/RecipeList'
 import RecipeDetails from './components/RecipeDetails'
-
+import SearchBar from './components/SearchBar'
 /*function App() {
   const [count, setCount] = useState(0) 
 
@@ -38,16 +37,12 @@ import RecipeDetails from './components/RecipeDetails'
 
 function App() {
   return (
-    <BrowserRouter>
-      <div style={{ padding: '20px' }}>
-        <h1>Recipe Sharing App</h1>
-        <AddRecipeForm />
-        <Routes>
-          <Route path="/" element={<RecipeList />} />
-          <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div style={{ padding: '20px' }}>
+      <h1>Recipe Sharing App</h1>
+      <AddRecipeForm />
+      <SearchBar />
+      <RecipeList />
+    </div>
   );
 }
 

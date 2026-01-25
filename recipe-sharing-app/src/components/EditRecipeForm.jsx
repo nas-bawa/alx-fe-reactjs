@@ -16,7 +16,7 @@ const EditRecipeForm = ({ recipe }) => {
   updateRecipe(recipe.id, { title, description });
 };
 
-  };
+  
 
   return (
     <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
