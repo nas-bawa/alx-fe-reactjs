@@ -1,4 +1,4 @@
-import Search from "./components/Search.jsx";
+import Search from "./components/seearch.jsx";
 
 function App() {
   return (
