@@ -36,7 +36,7 @@ function Search() {
 
       {/* Conditional rendering */}
       {loading && <p>Loading...</p>}
-      {error && <p>Looks like we can't find the user</p>}
+      {error && <p>["Looks like we cant find the user"]</p>}
       {user && (
         <div style={{ marginTop: "1rem" }}>
           <img src={user.avatar_url} alt={user.login} width="100" />
