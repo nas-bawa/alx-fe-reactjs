@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
+import recipesData from "../data.json"; // direct import
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("/src/data.json")
-      .then((res) => res.json())
-      .then((data) => setRecipes(data))
-      .catch((err) => console.error("Error loading recipes:", err));
+    // load mock data directly
+    setRecipes(recipesData);
   }, []);
 
   return (
