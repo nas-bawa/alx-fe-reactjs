@@ -4,15 +4,11 @@ function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
-  const [errors, setErrors] = useState({}); // ✅ errors object
+  const [errors, setErrors] = useState({});
 
-  // ✅ Validation function
   const validate = () => {
     const newErrors = {};
-
-    if (!title.trim()) {
-      newErrors.title = "Recipe title is required.";
-    }
+    if (!title.trim()) newErrors.title = "Recipe title is required.";
     if (!ingredients.trim()) {
       newErrors.ingredients = "Ingredients are required.";
     } else {
@@ -21,9 +17,7 @@ function AddRecipeForm() {
         newErrors.ingredients = "Please include at least two ingredients.";
       }
     }
-    if (!steps.trim()) {
-      newErrors.steps = "Preparation steps are required.";
-    }
+    if (!steps.trim()) newErrors.steps = "Preparation steps are required.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -31,7 +25,7 @@ function AddRecipeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return; // ✅ use validate before submit
+    if (!validate()) return;
 
     const newRecipe = {
       title,
@@ -42,7 +36,6 @@ function AddRecipeForm() {
     console.log("New Recipe Submitted:", newRecipe);
     alert("Recipe submitted successfully!");
 
-    // Reset form
     setTitle("");
     setIngredients("");
     setSteps("");
@@ -53,14 +46,14 @@ function AddRecipeForm() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg"
+        className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg md:max-w-2xl md:p-10"
       >
         <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">
           Add New Recipe
         </h1>
 
         {/* Title */}
-        <div className="mb-4">
+        <div className="mb-4 md:mb-6">
           <label className="block text-gray-700 font-semibold mb-2">
             Recipe Title
           </label>
@@ -68,7 +61,7 @@ function AddRecipeForm() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 md:px-4 md:py-3"
             placeholder="Enter recipe title"
           />
           {errors.title && (
@@ -77,14 +70,14 @@ function AddRecipeForm() {
         </div>
 
         {/* Ingredients */}
-        <div className="mb-4">
+        <div className="mb-4 md:mb-6">
           <label className="block text-gray-700 font-semibold mb-2">
             Ingredients (comma separated)
           </label>
           <textarea
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 md:px-4 md:py-3"
             placeholder="e.g. Flour, Sugar, Eggs"
             rows="3"
           />
@@ -94,14 +87,14 @@ function AddRecipeForm() {
         </div>
 
         {/* Steps */}
-        <div className="mb-6">
+        <div className="mb-6 md:mb-8">
           <label className="block text-gray-700 font-semibold mb-2">
             Preparation Steps
           </label>
           <textarea
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 md:px-4 md:py-3"
             placeholder="Write each step separated by a period."
             rows="4"
           />
@@ -113,7 +106,7 @@ function AddRecipeForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition md:py-3"
         >
           Submit Recipe
         </button>
