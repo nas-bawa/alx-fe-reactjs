@@ -1,23 +1,29 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 function PostsComponent() {
-  // Fetch function
   const fetchPosts = async () => {
     const { data } = await axios.get("https://jsonplaceholder.typicode.com/posts");
     return data;
   };
 
-  // useQuery hook
-  const { data, error, isLoading, isError, refetch } = useQuery("posts", fetchPosts);
+  const {
+    data,
+    error,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    cacheTime: 1000 * 60 * 5,          // ✅ keep cache for 5 minutes
+    staleTime: 1000 * 60,              // ✅ data considered fresh for 1 minute
+    refetchOnWindowFocus: false,       // ✅ don’t auto-refetch when window regains focus
+    keepPreviousData: true,            // ✅ keep old data while fetching new
+  });
 
-  if (isLoading) {
-    return <p className="text-center text-gray-600">Loading posts...</p>;
-  }
-
-  if (isError) {
-    return <p className="text-center text-red-500">Error: {error.message}</p>;
-  }
+  if (isLoading) return <p>Loading posts...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -30,10 +36,7 @@ function PostsComponent() {
 
       <ul className="space-y-4">
         {data.slice(0, 10).map((post) => (
-          <li
-            key={post.id}
-            className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition"
-          >
+          <li key={post.id} className="bg-white shadow-md rounded-lg p-4">
             <h2 className="text-xl font-semibold text-blue-600">{post.title}</h2>
             <p className="text-gray-700">{post.body}</p>
           </li>
