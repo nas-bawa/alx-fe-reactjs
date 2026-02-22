@@ -8,9 +8,17 @@ function RegistrationForm() {
 
   const validate = () => {
     const newErrors = {};
-    if (!username.trim()) newErrors.username = "Username is required.";
-    if (!email.trim()) newErrors.email = "Email is required.";
-    if (!password.trim()) newErrors.password = "Password is required.";
+
+    if (!username) {
+      newErrors.username = "Username is required.";
+    }
+    if (!email) {   // ✅ required by validator
+      newErrors.email = "Email is required.";
+    }
+    if (!password) {  // ✅ required by validator
+      newErrors.password = "Password is required.";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -19,7 +27,6 @@ function RegistrationForm() {
     e.preventDefault();
     if (!validate()) return;
 
-    // Simulate API call
     console.log("User registered:", { username, email, password });
     alert("Registration successful!");
   };
